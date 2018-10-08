@@ -1,13 +1,16 @@
-.DEFAULT_GOAL := compile-run
+.DEFAULT_GOAL := build-run
 
-compile-run: compile run
+build-run: build run
 
 compile: clear
 	mkdir -p ./target/classes
 	javac -d ./target/classes ./src/main/java/games/Slot.java
 
 run:
-	java -cp ./target/classes games.Slot
+	java -jar ./target/Casino.jar
 
 clear:
 	rm -rf ./target
+
+build: compile
+	jar cfe ./target/Casino.jar games.Slot -C ./target/classes .
