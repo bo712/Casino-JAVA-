@@ -1,1 +1,5 @@
 target/
+
+#Maven
+maven-wrapper.jar
+pom.xml.versionsBackup

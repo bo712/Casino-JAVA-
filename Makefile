@@ -2,15 +2,12 @@
 
 build-run: build run
 
-compile: clear
-	mkdir -p ./target/classes
-	javac -d ./target/classes ./src/main/java/games/Slot.java
+build:
+	./mvnw clean package
 
 run:
-	java -jar ./target/Casino.jar
+	java -jar ./target/Casino-1.0-SNAPSHOT-jar-with-dependencies.jar
 
-clear:
-	rm -rf ./target
-
-build: compile
-	jar cfe ./target/Casino.jar games.Slot -C ./target/classes .
+update:
+	./mvnw versions:update-properties
+	./mvnw versions:display-plugin-updates
