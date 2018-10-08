@@ -2,4 +2,4 @@ language: java
 jdk:
   - oraclejdk10
 script:
-  - mvn clean package
+  - ./mvnw clean package
