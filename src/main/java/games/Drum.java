@@ -1,6 +1,6 @@
 package games;
 
-public class Drum {
+class Drum {
 
 	private static final int NUM_OF_VALUES = 7;
 
