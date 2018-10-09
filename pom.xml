@@ -40,7 +40,6 @@
         <spotbugs-maven-plugin.version>3.1.6</spotbugs-maven-plugin.version>
         <maven-pmd-plugin.version>3.10.0</maven-pmd-plugin.version>
 
-
     </properties>
 
     <dependencies>
@@ -218,15 +217,6 @@
                 <version>${sonar-maven-plugin.version}</version>
             </plugin>
 
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>versions-maven-plugin</artifactId>
-                <configuration>
-                    <generateBackupPoms>false</generateBackupPoms>
-                    <rulesUri>file://${project.basedir}/maven-version-rules.xml</rulesUri>
-                </configuration>
-            </plugin>
-
             <!-- SPOTBUGS -->
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
@@ -247,6 +237,16 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>${maven-pmd-plugin.version}</version>
+            </plugin>
+
+            <!-- SonarQube -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <configuration>
+                    <generateBackupPoms>false</generateBackupPoms>
+                    <rulesUri>file://${project.basedir}/maven-version-rules.xml</rulesUri>
+                </configuration>
             </plugin>
 
         </plugins>
