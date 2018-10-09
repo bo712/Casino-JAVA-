@@ -37,9 +37,9 @@ public class Slot {
 	}
 
 	private static void printWin(final int prize, final int amount) {
-		System.out.println("!!!!!!!!!!!!!!!!*********************!!!!!!!!!!!!!!!!");
-		System.out.println("\nВы ВЫИГРАЛИ $" + prize + "!!! Ваш капитал теперь составляет: $" + amount);
-		System.out.println("!!!!!!!!!!!!!!!!*********************!!!!!!!!!!!!!!!!");
+		System.out.println("\n!!!!!!!!!!!!!!!!*************************!!!!!!!!!!!!!!!!");
+		System.out.println("Вы ВЫИГРАЛИ $" + prize + "!!! Ваш капитал теперь составляет: $" + amount);
+		System.out.println("!!!!!!!!!!!!!!!!*************************!!!!!!!!!!!!!!!!");
 	}
 
 	private static void printLose(final int bet, final int amount) {
@@ -56,10 +56,9 @@ public class Slot {
 		while (slot.amount > slot.bet) {
 			printMoneyStatement(slot.amount, slot.bet);
 
-			int effort = getEffort();
-			int firstValue = drum1.runDrums(effort);
-			int secondValue = drum2.runDrums(effort);
-			int thirdValue = drum3.runDrums(effort);
+			int firstValue = drum1.runDrums(getEffort());
+			int secondValue = drum2.runDrums(getEffort());
+			int thirdValue = drum3.runDrums(getEffort());
 
 			printDrumsResult(firstValue, secondValue, thirdValue);
 
@@ -70,7 +69,6 @@ public class Slot {
 				slot.amount -= slot.bet;
 				printLose(slot.bet, slot.amount);
 			}
-
 		}
 		printBye();
 	}
