@@ -18,8 +18,17 @@ public class Slot {
 		return (int)Math.round(Math.random() * 100);
 	}
 
+	private static void printHello() {
+		System.out.println("Добро пожаловать в игру \"Однорукий бандит\"!");
+	}
+
+	private static void printBye() {
+		System.out.println("\n\nОднорукий бандит одной рукой вынул все Ваши деньги.");
+		System.out.println("Возвращайтесь, когда найдёте ещё немного денег. Вам обязательно повезёт. Кхе-кхе =)");
+	}
+
 	private static void printMoneyStatement(final int amount, final int bet) {
-		System.out.println("У Вас $" + amount + ", ставка - $" + bet);
+		System.out.println("\nУ Вас $" + amount + ", ставка - $" + bet);
 		System.out.println("Крутим барабаны!Розыгрыш принёс следующие результаты:");
 	}
 
@@ -28,7 +37,9 @@ public class Slot {
 	}
 
 	private static void printWin(final int prize, final int amount) {
-		System.out.println("Вы ВЫИГРАЛИ $" + prize + "!!! Ваш капитал теперь составляет: $" + amount);
+		System.out.println("!!!!!!!!!!!!!!!!*********************!!!!!!!!!!!!!!!!");
+		System.out.println("\nВы ВЫИГРАЛИ $" + prize + "!!! Ваш капитал теперь составляет: $" + amount);
+		System.out.println("!!!!!!!!!!!!!!!!*********************!!!!!!!!!!!!!!!!");
 	}
 
 	private static void printLose(final int bet, final int amount) {
@@ -41,6 +52,7 @@ public class Slot {
 		Drum drum2 = new Drum();
 		Drum drum3 = new Drum();
 
+		printHello();
 		while (slot.amount > slot.bet) {
 			printMoneyStatement(slot.amount, slot.bet);
 
@@ -60,7 +72,6 @@ public class Slot {
 			}
 
 		}
-
+		printBye();
 	}
 }
-
