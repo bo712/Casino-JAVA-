@@ -2,15 +2,16 @@ package games;
 
 public class Drum {
 
-    final private int numOfValues;
+	private static final int NUM_OF_VALUES = 7;
 
-    Drum(int numOfValues) {
-        this.numOfValues = numOfValues;
-    }
+	private int value;
 
-    public void runDrums() {
+	Drum() {
+		this.value = (int)Math.round(Math.random() * NUM_OF_VALUES);
+	}
 
-
+	int runDrums(final int effort) {
+		return (effort + value) % NUM_OF_VALUES;
     }
 
 }
