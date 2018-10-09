@@ -39,7 +39,6 @@
         <sonar-maven-plugin.version>2.7.1</sonar-maven-plugin.version>
         <spotbugs-maven-plugin.version>3.1.6</spotbugs-maven-plugin.version>
         <maven-pmd-plugin.version>3.10.0</maven-pmd-plugin.version>
-        <maven-checkstyle-plugin>2.17</maven-checkstyle-plugin>
 
     </properties>
 
@@ -247,52 +246,6 @@
                 <configuration>
                     <generateBackupPoms>false</generateBackupPoms>
                     <rulesUri>file://${project.basedir}/maven-version-rules.xml</rulesUri>
-                </configuration>
-            </plugin>
-
-            <!-- Checkstyle -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${maven-checkstyle-plugin}</version>
-                <executions>
-                    <execution>
-                        <id>validate</id>
-                        <phase>validate</phase>
-                        <configuration>
-                            <encoding>UTF-8</encoding>
-                            <consoleOutput>true</consoleOutput>
-                            <failsOnError>true</failsOnError>
-                            <linkXRef>false</linkXRef>
-                        </configuration>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <logViolationsToConsole>true</logViolationsToConsole>
-                    <checkstyleRules>
-                        <module name="Checker">
-                            <!-- Checks for Size Violations.                    -->
-                            <!-- See http://checkstyle.sf.net/config_sizes.html -->
-                            <module name="FileLength">
-                                <property name="max" value="3500" />
-                                <property name="fileExtensions" value="java"/>
-                            </module>
-
-                            <!-- Checks for whitespace                               -->
-                            <!-- See http://checkstyle.sf.net/config_whitespace.html -->
-                            <module name="FileTabCharacter"/>
-
-                            <module name="TreeWalker">
-                                <module name="StaticVariableName"/>
-                                <module name="TypeName">
-                                    <property name="format" value="^_?[A-Z][a-zA-Z0-9]*$"/>
-                                </module>
-                            </module>
-                        </module>
-                    </checkstyleRules>
                 </configuration>
             </plugin>
 
