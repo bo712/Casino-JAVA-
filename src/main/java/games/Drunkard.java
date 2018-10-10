@@ -6,6 +6,14 @@ class Drunkard {
 
 	private static final int CARDS_TOTAL_COUNT = PARS_TOTAL_COUNT * Suit.values().length;
 
+	private static int[] deckOfCards = new int[CARDS_TOTAL_COUNT];
+
+	private static int[][] playersCards = new int[2][CARDS_TOTAL_COUNT];
+
+	private static int[] playersCardsBeginCursors = new int[2];
+
+	private static int[] playersCardsEndCursors = new int[2];
+
 	private static Suit getSuit(int cardNumber) {
 		return Suit.values()[cardNumber / PARS_TOTAL_COUNT];
 	}
@@ -18,7 +26,11 @@ class Drunkard {
 		return getPar(cardNumber) + " " + getSuit(cardNumber);
 	}
 
-    static void main() {
+	private static int incrementIndex(int i) {
+		return (i + 1) % CARDS_TOTAL_COUNT;
+	}
+
+	static void main() {
 	    System.out.println(toString(CARDS_TOTAL_COUNT - 1));
     }
 

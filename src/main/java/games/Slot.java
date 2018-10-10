@@ -6,9 +6,6 @@ class Slot {
 
     private static final int NUM_OF_VALUES = 7;
 
-    private Slot() {
-    }
-
     private static int getValueOfReel() {
         return (int)Math.round(Math.random() * NUM_OF_VALUES);
     }
