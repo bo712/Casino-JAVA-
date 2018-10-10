@@ -1,8 +1,8 @@
 package games;
 
-public class Drunkard {
+class Drunkard {
 
-    public static void main(String[] args) {
+    static void main() {
         System.out.println("Hello!");
     }
 }

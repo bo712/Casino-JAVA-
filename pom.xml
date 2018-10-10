@@ -78,7 +78,7 @@
                 </dependencies>
             </plugin>
 
-            <!-- JAR with dependencies -->
+            <!-- maven-assembly-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -86,7 +86,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>games.Slot</mainClass>
+                            <mainClass>games.Choice</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

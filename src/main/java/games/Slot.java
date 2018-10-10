@@ -1,10 +1,13 @@
 package games;
 
-public class Slot {
+class Slot {
 
     private static int[] reel = {getValueOfReel(), getValueOfReel(), getValueOfReel()}; //барабаны
 
     private static final int NUM_OF_VALUES = 7;
+
+    private Slot() {
+    }
 
     private static int getValueOfReel() {
         return (int)Math.round(Math.random() * NUM_OF_VALUES);
@@ -39,8 +42,6 @@ public class Slot {
     }
 
     private static void printWin(final int prize, final int credit) {
-        String message = "Вы ВЫИГРАЛИ $" + prize + "!!! Ваш капитал теперь составляет: $" + credit;
-
         System.out.println("\n!!!!!!!!!!!!!!!!*************************!!!!!!!!!!!!!!!!");
         System.out.println("Вы ВЫИГРАЛИ $" + prize + "!!! Ваш капитал теперь составляет: $" + credit);
         System.out.println("!!!!!!!!!!!!!!!!*************************!!!!!!!!!!!!!!!!");
@@ -50,7 +51,7 @@ public class Slot {
         System.out.println("Проигрыш $" + bet + ", ваш капитал теперь составляет: $" + credit);
     }
 
-    public static void main(String[] args) {
+    public static void main() {
 
         int credit = 100;
         int bet = 10;
