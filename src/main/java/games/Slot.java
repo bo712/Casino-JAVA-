@@ -57,7 +57,7 @@ public class Slot {
         int prize = 1000;
 
         printHello();
-        while (credit > bet) {
+        while (credit >= bet) {
             printMoneyStatement(credit, bet);
             runReel(reel);
 
