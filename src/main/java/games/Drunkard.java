@@ -36,10 +36,6 @@ class Drunkard {
 		return getPar(cardNumber) + " " + getSuit(cardNumber);
 	}
 
-	private static int incrementIndex(int i) {
-		return (i + 1) % CARDS_TOTAL_COUNT;
-	}
-
 	private static void shuffleDeck() {
 		for (int i = 0; i < deckOfCards.length; i += 1) {
 			deckOfCards[i] = i;
@@ -57,7 +53,10 @@ class Drunkard {
 	}
 
 	private static int playerCardsCount(final int playerNumber) {
-		return Math.abs(playersCardsBeginCursors[playerNumber] - playersCardsEndCursors[playerNumber]) + 1;
+		if (playersCardsBeginCursors[playerNumber] <= playersCardsEndCursors[playerNumber]) {
+			return playersCardsEndCursors[playerNumber] - playersCardsBeginCursors[playerNumber] + 1;
+		}
+		return playersCardsEndCursors[playerNumber] + CARDS_TOTAL_COUNT - playersCardsBeginCursors[playerNumber] + 1;
 	}
 
 	private static void getCardsFromTop() {
@@ -65,9 +64,6 @@ class Drunkard {
 		cardsOnTable[1] = playersCards[1][playersCardsBeginCursors[1]];
 		playersCardsBeginCursors[0] = (playersCardsBeginCursors[0] + 1) % CARDS_TOTAL_COUNT;
 		playersCardsBeginCursors[1] = (playersCardsBeginCursors[1] + 1) % CARDS_TOTAL_COUNT;
-
-		System.out.println("Карта " + cardsOnTable[0] + " = " + getParsInt(cardsOnTable[0]));
-		System.out.println("Карта " + cardsOnTable[1] + " = " + getParsInt(cardsOnTable[1]));
 	}
 
 	private static void putCardsDown(final int playerNumber) {
