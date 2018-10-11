@@ -2,19 +2,17 @@ package games;
 
 import org.apache.commons.math3.util.MathArrays;
 
-import java.util.Arrays;
-
 class Drunkard {
 
-	private static final int PARS_TOTAL_COUNT = Par.values().length; //кол-во карт в масти
+	private static final int PARS_TOTAL_COUNT = Par.values().length;
 
-	private static final int CARDS_TOTAL_COUNT = PARS_TOTAL_COUNT * Suit.values().length; //кол-во карт в колоде
+	private static final int CARDS_TOTAL_COUNT = PARS_TOTAL_COUNT * Suit.values().length;
 
-	private static int[] deckOfCards = new int[CARDS_TOTAL_COUNT]; //колода карт
+	private static int[] deckOfCards = new int[CARDS_TOTAL_COUNT];
 
-	private static int[][] playersCards = new int[2][CARDS_TOTAL_COUNT]; //2-й массив - карты игроков
+	private static int[][] playersCards = new int[2][CARDS_TOTAL_COUNT];
 
-	private static int[] cardsOnTable = new int[2]; //карты на столе
+	private static int[] cardsOnTable = new int[2];
 
 	private static int[] playersCardsBeginCursors = {0, 0};
 
@@ -44,11 +42,11 @@ class Drunkard {
 	}
 
 	private static void dealCards() {
-		for(int i = 0; i < 18; i++){
+		for(int i = 0; i < CARDS_TOTAL_COUNT / 2; i++){
 			playersCards[0][i] = deckOfCards[i];
 		}
-		for(int i = 18; i < 36; i++){
-			playersCards[1][i - 18] = deckOfCards[i];
+		for(int i = CARDS_TOTAL_COUNT / 2; i < CARDS_TOTAL_COUNT; i++){
+			playersCards[1][i - CARDS_TOTAL_COUNT / 2] = deckOfCards[i];
 		}
 	}
 
@@ -81,14 +79,14 @@ class Drunkard {
 	}
 
 	private static void printResult(String winner) {
-		System.out.println("Игрок №1 карта:\t" + toString(cardsOnTable[0]) + ";\tигрок №2 карта:\t" + toString(cardsOnTable[1]) + winner + "У игрока №1 карт: " + playerCardsCount(0) + ", у игрока №2 карт: " + + playerCardsCount(1));
+		System.out.println("Игрок №1 карта:\t" + toString(cardsOnTable[0]) + ";\tигрок №2 карта:\t" + toString(cardsOnTable[1]) + winner + "У игрока №1 карт: " + playerCardsCount(0) + ", у игрока №2 карт: " + (CARDS_TOTAL_COUNT - playerCardsCount(0)));
 	}
 
 	static void main() {
 		shuffleDeck();
 		dealCards();
 
-		while(playerCardsCount(0) != 0 && playerCardsCount(1) != 0) {
+		while(playerCardsCount(0) != CARDS_TOTAL_COUNT && playerCardsCount(1) != CARDS_TOTAL_COUNT) {
 			getCardsFromTop();
 			if ((getParsInt(cardsOnTable[0]) == 0 && getParsInt(cardsOnTable[1]) == PARS_TOTAL_COUNT - 1) || getParsInt(cardsOnTable[0]) > getParsInt(cardsOnTable[1])) {
 				putCardsDown(0);
@@ -105,9 +103,9 @@ class Drunkard {
 			}
 
 		}
-		if (playerCardsCount(0) == 0) {
+		if (playerCardsCount(0) == CARDS_TOTAL_COUNT) {
 			System.out.println("Победил первый игрок!");
-		} else {
+		} else if (playerCardsCount(1) == CARDS_TOTAL_COUNT) {
 			System.out.println("Победил второй игрок!");
 		}
 
