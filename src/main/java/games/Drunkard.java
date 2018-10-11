@@ -14,9 +14,11 @@ class Drunkard {
 
 	private static int[][] playersCards = new int[2][CARDS_TOTAL_COUNT];
 
-	private static int[] playersCardsBeginCursors = new int[2];
+	private static int[] cardsOnTable = new int[2];
 
-	private static int[] playersCardsEndCursors = new int[2];
+	private static int[] playersCardsBeginCursors = {0, 0};
+
+	private static int[] playersCardsEndCursors = {CARDS_TOTAL_COUNT / 2 - 1, CARDS_TOTAL_COUNT / 2 - 1};
 
 	private static Suit getSuit(final int cardNumber) {
 		return Suit.values()[cardNumber / PARS_TOTAL_COUNT];
@@ -50,19 +52,44 @@ class Drunkard {
 		playersCards[1] = Arrays.copyOfRange(deckOfCards,18,36);
 	}
 
+	private static int playerCardsCount(final int playerNumber) {
+		return Math.abs(playersCardsBeginCursors[playerNumber] - playersCardsEndCursors[playerNumber]);
+	}
+
+	private static void getCardsFromTop() {
+		cardsOnTable[0] = playersCards[0][playersCardsBeginCursors[0]];
+		cardsOnTable[1] = playersCards[1][playersCardsBeginCursors[1]];
+		playersCardsBeginCursors[0] = (playersCardsBeginCursors[0] + 1) % CARDS_TOTAL_COUNT;
+		playersCardsBeginCursors[1] = (playersCardsBeginCursors[1] + 1) % CARDS_TOTAL_COUNT;
+	}
+
+	private static void putCardsDown(final int playerNumber) {
+		playersCards[playerNumber][playersCardsEndCursors[playerNumber]] = cardsOnTable[0];
+		playersCardsEndCursors[playerNumber] = (playersCardsEndCursors[playerNumber] + 1) % CARDS_TOTAL_COUNT;
+		playersCards[playerNumber][playersCardsEndCursors[playerNumber]] = cardsOnTable[1];
+		playersCardsEndCursors[playerNumber] = (playersCardsEndCursors[playerNumber] + 1) % CARDS_TOTAL_COUNT;
+	}
+
 	static void main() {
 		shuffleDeck();
 		dealCards();
-		while(playersCards[0].length != 0 && playersCards[1].length !=0) {
+
+		getCardsFromTop();
+
+		while(playerCardsCount(0) != 0 && playerCardsCount(1) != 0) {
 			if (getParsInt(playersCards[0][0]) > getParsInt(playersCards[1][0])) {
 				System.out.println("Кон выиграл первый игрок");
-				//тут надо ещё карты в колоду первому пихнуть
+				putCardsDown(0);
+				putCardsDown(0);
+
 			} else if (getParsInt(playersCards[0][0]) < getParsInt(playersCards[1][0])) {
 				System.out.println("Кон выиграл второй игрок");
-				//тут надо ещё карты в колоду первому пихнуть
+				putCardsDown(1);
+				putCardsDown(1);
 			} else {
 				System.out.println("Хз, кто победил. Набейте друг другу морды, я спать уже хочу");
-				//тут надо ещё реализовать возврат карт игрокам
+				putCardsDown(0);
+				putCardsDown(1);
 			}
 
 		}
