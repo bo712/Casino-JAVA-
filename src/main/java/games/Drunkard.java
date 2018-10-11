@@ -42,12 +42,8 @@ class Drunkard {
 	}
 
 	private static void dealCards() {
-		for(int i = 0; i < CARDS_TOTAL_COUNT / 2; i++){
-			playersCards[0][i] = deckOfCards[i];
-		}
-		for(int i = CARDS_TOTAL_COUNT / 2; i < CARDS_TOTAL_COUNT; i++){
-			playersCards[1][i - CARDS_TOTAL_COUNT / 2] = deckOfCards[i];
-		}
+		System.arraycopy (deckOfCards, 0, playersCards[0], 0, CARDS_TOTAL_COUNT / 2);
+		System.arraycopy (deckOfCards, CARDS_TOTAL_COUNT / 2, playersCards[1], 0, CARDS_TOTAL_COUNT / 2);
 	}
 
 	private static int playerCardsCount(final int playerNumber) {
