@@ -90,11 +90,11 @@ class Drunkard {
 
 		while(playerCardsCount(0) != 0 && playerCardsCount(1) != 0) {
 			getCardsFromTop();
-			if (getParsInt(cardsOnTable[0]) > getParsInt(cardsOnTable[1])) {
+			if ((getParsInt(cardsOnTable[0]) == 0 && getParsInt(cardsOnTable[1]) == PARS_TOTAL_COUNT - 1) || getParsInt(cardsOnTable[0]) > getParsInt(cardsOnTable[1])) {
 				putCardsDown(0);
 				String winner = "\tВыиграл игрок 1!\t";
 				printResult(winner);
-			} else if (getParsInt(cardsOnTable[0]) < getParsInt(cardsOnTable[1])) {
+			} else if ((getParsInt(cardsOnTable[0]) == PARS_TOTAL_COUNT - 1 && getParsInt(cardsOnTable[1]) == 0) || getParsInt(cardsOnTable[0]) < getParsInt(cardsOnTable[1])) {
 				putCardsDown(1);
 				String winner = "\tВыиграл игрок 2!\t";
 				printResult(winner);
