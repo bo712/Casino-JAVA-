@@ -1,6 +1,6 @@
 package games;
 
-class Slot {
+final class Slot {
 
     private static int[] reel = {getValueOfReel(), getValueOfReel(), getValueOfReel()}; //барабаны
 
