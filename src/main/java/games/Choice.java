@@ -18,7 +18,7 @@ public class Choice {
         switch (getCharacterFromUser()) {
             case '1': Slot.main(); break;
             case '2': Drunkard.main(); break;
-//            case '3': Ochko
+            case '3': BlackJack.main(); break;
             default: System.out.println("Игры с таким номером нет!");
         }
     }
