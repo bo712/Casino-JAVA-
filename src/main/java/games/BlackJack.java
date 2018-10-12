@@ -33,6 +33,14 @@ final class BlackJack {
 		playersCursors[player] += 1;
 	}
 
+	static int sum(int player) {
+		int result = 0;
+		for (int i = 0; i < playersCursors[player]; i += 1) {
+			result += playersCards[player][i];
+		}
+		return result;
+	}
+
 	private static void initRound() {
 		System.out.println("\nУ Вас $" + playersMoney[0] + ", у компьютера - $" + playersMoney[1] + ". Начинаем новый раунд!");
 		cards = CardUtils.getShaffledCards();
