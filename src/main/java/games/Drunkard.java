@@ -67,6 +67,12 @@ class Drunkard {
 		playersCards[playerNumber][playersCardsEndCursors[playerNumber]] = cardsOnTable[1];
 	}
 
+	private static void completeStep(final int playerNumber) {
+		putCardsDown(playerNumber);
+		String winner = "\tВыиграл игрок " + (playerNumber + 1) + "!\t";
+		printResult(winner);
+	}
+
 	private static void putCardsBack() {
 		playersCardsEndCursors[0] = (playersCardsEndCursors[0] + 1) % CARDS_TOTAL_COUNT;
 		playersCards[0][playersCardsEndCursors[0]] = cardsOnTable[0];
@@ -75,7 +81,7 @@ class Drunkard {
 	}
 
 	private static void printResult(String winner) {
-		System.out.println("Игрок №1 карта:\t" + toString(cardsOnTable[0]) + ";\tигрок №2 карта:\t" + toString(cardsOnTable[1]) + winner + "У игрока №1 карт: " + playerCardsCount(0) + ", у игрока №2 карт: " + (CARDS_TOTAL_COUNT - playerCardsCount(0)));
+		System.out.println("Игрок №1 карта:\t" + toString(cardsOnTable[0]) + ";\tигрок №2 карта:\t" + toString(cardsOnTable[1]) + winner + "\tУ игрока №1 карт: " + playerCardsCount(0) + ", у игрока №2 карт: " + (CARDS_TOTAL_COUNT - playerCardsCount(0)));
 	}
 
 	static void main() {
@@ -85,23 +91,19 @@ class Drunkard {
 		while(playerCardsCount(0) != CARDS_TOTAL_COUNT && playerCardsCount(1) != CARDS_TOTAL_COUNT) {
 			getCardsFromTop();
 			if ((getParsInt(cardsOnTable[0]) == 0 && getParsInt(cardsOnTable[1]) == PARS_TOTAL_COUNT - 1) || getParsInt(cardsOnTable[0]) > getParsInt(cardsOnTable[1])) {
-				putCardsDown(0);
-				String winner = "\tВыиграл игрок 1!\t";
-				printResult(winner);
+				completeStep(0);
 			} else if ((getParsInt(cardsOnTable[0]) == PARS_TOTAL_COUNT - 1 && getParsInt(cardsOnTable[1]) == 0) || getParsInt(cardsOnTable[0]) < getParsInt(cardsOnTable[1])) {
-				putCardsDown(1);
-				String winner = "\tВыиграл игрок 2!\t";
-				printResult(winner);
+				completeStep(1);
 			} else {
 				putCardsBack();
-				String winner = "\tСпор - каждый остаётся при своих!\t";
+				String winner = "\tСпор - каждый при своих!";
 				printResult(winner);
 			}
 
 		}
 		if (playerCardsCount(0) == CARDS_TOTAL_COUNT) {
 			System.out.println("Победил первый игрок!");
-		} else if (playerCardsCount(1) == CARDS_TOTAL_COUNT) {
+		} else {
 			System.out.println("Победил второй игрок!");
 		}
 
