@@ -30,11 +30,13 @@ final class BlackJack {
 
 	private static void addCard2Player(final int player) {
 		playersCards[player][playersCursors[player]] = cards[cursor++];
+		playersCursors[player] += 1;
 	}
 
 	private static void initRound() {
 		System.out.println("\nУ Вас $" + playersMoney[0] + ", у компьютера - $" + playersMoney[1] + ". Начинаем новый раунд!");
 		cards = CardUtils.getShaffledCards();
+		cursor = 0;
 		playersCards = new int[2][MAX_CARDS_COUNT];
 		playersCursors = new int[]{0, 0};
 	}
