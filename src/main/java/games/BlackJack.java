@@ -13,7 +13,7 @@ final class BlackJack {
 	private static int[][] playersCards; // карты игроков. Первый индекс - номер игрока
 	private static int[] playersCursors; // курсоры карт игроков. Индекс - номер игрока
 
-	private static int value(int card) {
+	private static int value(final int card) {
 		switch (CardUtils.getPar(card)) {
 			case JACK: return 2;
 			case QUEEN: return 3;
@@ -33,12 +33,20 @@ final class BlackJack {
 		playersCursors[player] += 1;
 	}
 
-	static int sum(int player) {
+	static int sum(final int player) {
 		int result = 0;
 		for (int i = 0; i < playersCursors[player]; i += 1) {
 			result += playersCards[player][i];
 		}
 		return result;
+	}
+
+	static int getFinalSum(final int player) {
+		int result = sum(player);
+		if(result <= 21) {
+			return result;
+		}
+		return 0;
 	}
 
 	private static void initRound() {
