@@ -89,12 +89,17 @@ final class BlackJack {
 
 	}
 
+	private static void printRoundResult() {
+		System.out.println("Сумма ваших очков - " + playersPoints[0] + " , компьютера - " + playersPoints[1]);
+	}
+
 	static void main() throws IOException {
 
 		while(playersMoney[0] >= bet && playersMoney[1] >= bet){
 			initRound();
 			playersStep(0);
 			playersStep(1);
+			printRoundResult();
 		}
 
 		if (playersMoney[0] > 0)
