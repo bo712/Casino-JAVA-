@@ -62,7 +62,7 @@ final class BlackJack {
 	}
 
 	private static void initRound() {
-		log.info("\nУ Вас $" + playersMoney[0] + ", у компьютера - $" + playersMoney[1] + ". Начинаем новый раунд!");
+		log.info("\nУ Вас ${}, у компьютера - ${}. Начинаем новый раунд!", playersMoney[0], playersMoney[1]);
 		cards = CardUtils.getShaffledCards();
 		cursor = 0;
 		playersCards = new int[2][MAX_CARDS_COUNT];
@@ -79,7 +79,7 @@ final class BlackJack {
 	}
 
 	private static boolean confirm(String message) throws IOException {
-		log.info(message + " \"Y\" - Да, {любой другой символ} - нет (Что бы выйти из игры, нажмите Ctrl + C)");
+		log.info("{} \"Y\" - Да, {любой другой символ} - нет (Что бы выйти из игры, нажмите Ctrl + C)", message);
 		switch (Choice.getCharacterFromUser()) {
 			case 'Y':
 			case 'y': return true;
@@ -89,21 +89,21 @@ final class BlackJack {
 
 	private static void printGivenCard(final int player, final int card) {
 		if (player == 0){
-			log.info("Вам выпала карта " + CardUtils.toString(card));
+			log.info("Вам выпала карта {}", CardUtils.toString(card));
 		} else {
-			log.info("Компьютеру выпала карта " + CardUtils.toString(card));
+			log.info("Компьютеру выпала карта {}" ,CardUtils.toString(card));
 		}
 
 	}
 
 	private static void printRoundResult() {
-		log.info("Сумма ваших очков - " + playersPoints[0] + " , компьютера - " + playersPoints[1]);
+		log.info("Сумма ваших очков - {}, компьютера - {}",playersPoints[0], playersPoints[1]);
 		if (playersPoints[0] > playersPoints[1]) {
-			log.info("Вы выиграли раунд! Получаете $" + bet);
+			log.info("Вы выиграли раунд! Получаете ${}", bet);
 			playersMoney[0] += bet;
 			playersMoney[1] -= bet;
 		} else if (playersPoints[0] < playersPoints[1]) {
-			log.info("Вы проиграли раунд! Теряете $" + bet);
+			log.info("Вы проиграли раунд! Теряете ${}", bet);
 			playersMoney[0] -= bet;
 			playersMoney[1] += bet;
 		} else {

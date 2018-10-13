@@ -34,25 +34,25 @@ final class Slot {
     }
 
     private static void printMoneyStatement(final int credit, final int bet) {
-	    log.info("\nУ Вас $" + credit + ", ставка - $" + bet);
+	    log.info("У Вас ${}, ставка - ${}", credit, bet);
 	    log.info("Крутим барабаны!Розыгрыш принёс следующие результаты:");
     }
 
     private static void printDrumsResult(final int firstValue, final int secondValue, final int thirdValue) {
-	    log.info("первый барабан - " + firstValue + ", второй - " + secondValue + ", третий - " + thirdValue);
+	    log.info("первый барабан - {}, второй - {}, третий - {}",firstValue, secondValue, thirdValue);
     }
 
     private static void printWin(final int prize, final int credit) {
 	    log.info("\n!!!!!!!!!!!!!!!!*************************!!!!!!!!!!!!!!!!");
-	    log.info("Вы ВЫИГРАЛИ $" + prize + "!!! Ваш капитал теперь составляет: $" + credit);
+	    log.info("Вы ВЫИГРАЛИ ${}!!! Ваш капитал теперь составляет: ${}", prize,  credit);
 	    log.info("!!!!!!!!!!!!!!!!*************************!!!!!!!!!!!!!!!!");
     }
 
     private static void printLose(final int bet, final int credit) {
-	    log.info("Проигрыш $" + bet + ", ваш капитал теперь составляет: $" + credit);
+	    log.info("Проигрыш ${}, ваш капитал теперь составляет: ${}", bet, credit);
     }
 
-    public static void main() {
+    static void main() {
 
         int credit = 100;
         int bet = 10;

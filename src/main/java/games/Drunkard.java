@@ -60,9 +60,9 @@ final class Drunkard {
 	}
 
 	private static void printResult(String winner) {
-		log.info("Игрок №1 карта:\t" + CardUtils.toString(cardsOnTable[0]) + ";\tигрок №2 карта:\t" +
-				CardUtils.toString(cardsOnTable[1]) + winner + "\tУ игрока №1 карт: " + playerCardsCount(0) +
-				", у игрока №2 карт: " + (CardUtils.CARDS_TOTAL_COUNT - playerCardsCount(0)));
+		log.info("Игрок №1 карта:\t{};\tигрок №2 карта:\t{}{}\tУ игрока №1 карт: {}, у игрока №2 карт: {}",
+				CardUtils.toString(cardsOnTable[0]), CardUtils.toString(cardsOnTable[1]), winner,
+				playerCardsCount(0),(CardUtils.CARDS_TOTAL_COUNT - playerCardsCount(0)));
 	}
 
 	static void main() {
