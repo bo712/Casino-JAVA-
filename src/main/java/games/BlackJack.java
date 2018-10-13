@@ -15,7 +15,7 @@ final class BlackJack {
 
 	private static int[][] playersCards; // карты игроков. Первый индекс - номер игрока
 	private static int[] playersCursors; // курсоры карт игроков. Индекс - номер игрока
-	private static int[] playersPoints; // количество очков игроков. Индекс - номер игрока
+	private static int[] playersPoints = {0, 0}; // количество очков игроков. Индекс - номер игрока
 
 	private static int value(final int card) {
 		switch (CardUtils.getPar(card)) {
@@ -38,17 +38,17 @@ final class BlackJack {
 		playersCursors[player] += 1;
 	}
 
-	static int sum(final int player) {
+	private static int sum(final int player) {
 		int result = 0;
 		for (int i = 0; i < playersCursors[player]; i += 1) {
-			result += playersCards[player][i];
+			result += value(playersCards[player][i]);
 		}
 		return result;
 	}
 
-	static int getFinalSum(final int player) {
+	private static int getFinalSum(final int player) {
 		int result = sum(player);
-		if(result <= 21) {
+		if(result <= MAX_VALUE) {
 			return result;
 		}
 		return 0;
@@ -71,7 +71,7 @@ final class BlackJack {
 		playersPoints[player] = getFinalSum(0);
 	}
 
-	static boolean confirm(String message) throws IOException {
+	private static boolean confirm(String message) throws IOException {
 		System.out.println(message + " \"Y\" - Да, {любой другой символ} - нет (Что бы выйти из игры, нажмите Ctrl + C)");
 		switch (Choice.getCharacterFromUser()) {
 			case 'Y':
@@ -80,7 +80,7 @@ final class BlackJack {
 		}
 	}
 
-	static void printGivenCard(final int player, final int card) {
+	private static void printGivenCard(final int player, final int card) {
 		if (player == 0){
 			System.out.println("Вам выпала карта " + CardUtils.toString(card));
 		} else {
