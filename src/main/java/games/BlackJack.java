@@ -82,9 +82,9 @@ final class BlackJack {
 
 	static void printGivenCard(final int player, final int card) {
 		if (player == 0){
-			System.out.println("Вам выпала карта " + value(card));
+			System.out.println("Вам выпала карта " + CardUtils.toString(card));
 		} else {
-			System.out.println("Компьютеру выпала карта " + value(card));
+			System.out.println("Компьютеру выпала карта " + CardUtils.toString(card));
 		}
 
 	}
