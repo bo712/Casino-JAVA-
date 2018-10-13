@@ -68,7 +68,7 @@ final class BlackJack {
 		while((player == 0 && sum(player) < 20 && confirm("Берём ещё?")) || (player == 1 && sum(player) < 17)) {
 			addCard2Player(player);
 		}
-		playersPoints[player] = getFinalSum(0);
+		playersPoints[player] = getFinalSum(player);
 	}
 
 	private static boolean confirm(String message) throws IOException {
@@ -91,6 +91,17 @@ final class BlackJack {
 
 	private static void printRoundResult() {
 		System.out.println("Сумма ваших очков - " + playersPoints[0] + " , компьютера - " + playersPoints[1]);
+		if (playersPoints[0] > playersPoints[1]) {
+			System.out.println("Вы выиграли раунд! Получаете $" + bet);
+			playersMoney[0] += bet;
+			playersMoney[1] -= bet;
+		} else if (playersPoints[0] < playersPoints[1]) {
+			System.out.println("Вы проиграли раунд! Теряете $" + bet);
+			playersMoney[0] -= bet;
+			playersMoney[1] += bet;
+		} else {
+			System.out.println("Ничья. Все остаются при своих.");
+		}
 	}
 
 	static void main() throws IOException {
@@ -107,7 +118,6 @@ final class BlackJack {
 		else
 			System.out.println("Вы проиграли. Соболезнуем...");
 
-		initRound();
 	}
 
 }
