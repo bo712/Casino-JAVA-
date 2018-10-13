@@ -9,6 +9,9 @@ final class BlackJack {
 	private static final Logger log = org.slf4j.LoggerFactory.getLogger(BlackJack.class);
 
 	private static final int MAX_VALUE = 21;
+	private static final int VALUE_PASS_HUMAN = 20;
+	private static final int VALUE_PASS_CPU = 17;
+
 	private static final int MAX_CARDS_COUNT = 8; //максимальное количество карт на руках. Иначе всегда будет перебор.
 
 	private static int[] playersMoney = {100, 100};
@@ -67,9 +70,9 @@ final class BlackJack {
 	}
 
 	private static void playersStep(final int player) throws IOException {
-		addCard2Player(player);
-		addCard2Player(player);
-		while((player == 0 && sum(player) < 20 && confirm("Берём ещё?")) || (player == 1 && sum(player) < 17)) {
+		while(playersCursors[player] < 2 ||
+				((player == 0 && sum(player) < VALUE_PASS_HUMAN && confirm("Берём ещё?")) ||
+						(player == 1 && sum(player) < VALUE_PASS_CPU))) {
 			addCard2Player(player);
 		}
 		playersPoints[player] = getFinalSum(player);
