@@ -1,6 +1,10 @@
 package games;
 
+import org.slf4j.Logger;
+
 final class Drunkard {
+
+	private static final Logger log = org.slf4j.LoggerFactory.getLogger(Drunkard.class);
 
 	private static int[] deckOfCards = CardUtils.getShaffledCards();
 
@@ -56,7 +60,7 @@ final class Drunkard {
 	}
 
 	private static void printResult(String winner) {
-		System.out.println("Игрок №1 карта:\t" + CardUtils.toString(cardsOnTable[0]) + ";\tигрок №2 карта:\t" +
+		log.info("Игрок №1 карта:\t" + CardUtils.toString(cardsOnTable[0]) + ";\tигрок №2 карта:\t" +
 				CardUtils.toString(cardsOnTable[1]) + winner + "\tУ игрока №1 карт: " + playerCardsCount(0) +
 				", у игрока №2 карт: " + (CardUtils.CARDS_TOTAL_COUNT - playerCardsCount(0)));
 	}
@@ -78,9 +82,9 @@ final class Drunkard {
 
 		}
 		if (playerCardsCount(0) == CardUtils.CARDS_TOTAL_COUNT) {
-			System.out.println("Победил первый игрок!");
+			log.info("Победил первый игрок!");
 		} else {
-			System.out.println("Победил второй игрок!");
+			log.info("Победил второй игрок!");
 		}
 
     }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%-5level: %msg%n"/>
+        </Console>
+        <RollingFile
+                name="FileLogger"
+                fileName="logs/Casino.log"
+                filePattern="logs/Casino-%d{yyyy-MM-dd}.log"
+                append="true">
+            <PatternLayout
+                    pattern="%-5level: %msg%n"/>
+            <SizeBasedTriggeringPolicy size="10MB"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="info">
+            <!--<Root level="trace">-->
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="FileLogger" level="DEBUG"/>
+        </Root>
+    </Loggers>
+</Configuration>

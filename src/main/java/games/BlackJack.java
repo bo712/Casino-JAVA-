@@ -1,8 +1,12 @@
 package games;
 
+import org.slf4j.Logger;
+
 import java.io.IOException;
 
 final class BlackJack {
+
+	private static final Logger log = org.slf4j.LoggerFactory.getLogger(BlackJack.class);
 
 	private static final int MAX_VALUE = 21;
 	private static final int MAX_CARDS_COUNT = 8; //максимальное количество карт на руках. Иначе всегда будет перебор.
@@ -55,7 +59,7 @@ final class BlackJack {
 	}
 
 	private static void initRound() {
-		System.out.println("\nУ Вас $" + playersMoney[0] + ", у компьютера - $" + playersMoney[1] + ". Начинаем новый раунд!");
+		log.info("\nУ Вас $" + playersMoney[0] + ", у компьютера - $" + playersMoney[1] + ". Начинаем новый раунд!");
 		cards = CardUtils.getShaffledCards();
 		cursor = 0;
 		playersCards = new int[2][MAX_CARDS_COUNT];
@@ -72,7 +76,7 @@ final class BlackJack {
 	}
 
 	private static boolean confirm(String message) throws IOException {
-		System.out.println(message + " \"Y\" - Да, {любой другой символ} - нет (Что бы выйти из игры, нажмите Ctrl + C)");
+		log.info(message + " \"Y\" - Да, {любой другой символ} - нет (Что бы выйти из игры, нажмите Ctrl + C)");
 		switch (Choice.getCharacterFromUser()) {
 			case 'Y':
 			case 'y': return true;
@@ -82,25 +86,25 @@ final class BlackJack {
 
 	private static void printGivenCard(final int player, final int card) {
 		if (player == 0){
-			System.out.println("Вам выпала карта " + CardUtils.toString(card));
+			log.info("Вам выпала карта " + CardUtils.toString(card));
 		} else {
-			System.out.println("Компьютеру выпала карта " + CardUtils.toString(card));
+			log.info("Компьютеру выпала карта " + CardUtils.toString(card));
 		}
 
 	}
 
 	private static void printRoundResult() {
-		System.out.println("Сумма ваших очков - " + playersPoints[0] + " , компьютера - " + playersPoints[1]);
+		log.info("Сумма ваших очков - " + playersPoints[0] + " , компьютера - " + playersPoints[1]);
 		if (playersPoints[0] > playersPoints[1]) {
-			System.out.println("Вы выиграли раунд! Получаете $" + bet);
+			log.info("Вы выиграли раунд! Получаете $" + bet);
 			playersMoney[0] += bet;
 			playersMoney[1] -= bet;
 		} else if (playersPoints[0] < playersPoints[1]) {
-			System.out.println("Вы проиграли раунд! Теряете $" + bet);
+			log.info("Вы проиграли раунд! Теряете $" + bet);
 			playersMoney[0] -= bet;
 			playersMoney[1] += bet;
 		} else {
-			System.out.println("Ничья. Все остаются при своих.");
+			log.info("Ничья. Все остаются при своих.");
 		}
 	}
 
@@ -114,9 +118,9 @@ final class BlackJack {
 		}
 
 		if (playersMoney[0] > 0)
-			System.out.println("Вы выиграли! Поздравляем!");
+			log.info("Вы выиграли! Поздравляем!");
 		else
-			System.out.println("Вы проиграли. Соболезнуем...");
+			log.info("Вы проиграли. Соболезнуем...");
 
 	}
 

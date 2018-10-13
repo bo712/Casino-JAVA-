@@ -1,6 +1,10 @@
 package games;
 
+import org.slf4j.Logger;
+
 final class Slot {
+
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Slot.class);
 
     private static int[] reel = {getValueOfReel(), getValueOfReel(), getValueOfReel()}; //барабаны
 
@@ -21,31 +25,31 @@ final class Slot {
     }
 
     private static void printHello() {
-        System.out.println("Добро пожаловать в игру \"Однорукий бандит\"!");
+	    log.info("Добро пожаловать в игру \"Однорукий бандит\"!");
     }
 
     private static void printBye() {
-        System.out.println("\n\nОднорукий бандит одной рукой вынул все Ваши деньги.");
-        System.out.println("Возвращайтесь, когда найдёте ещё немного денег. Вам обязательно повезёт. Кхе-кхе =)");
+	    log.info("\n\nОднорукий бандит одной рукой вынул все Ваши деньги.");
+	    log.info("Возвращайтесь, когда найдёте ещё немного денег. Вам обязательно повезёт. Кхе-кхе =)");
     }
 
     private static void printMoneyStatement(final int credit, final int bet) {
-        System.out.println("\nУ Вас $" + credit + ", ставка - $" + bet);
-        System.out.println("Крутим барабаны!Розыгрыш принёс следующие результаты:");
+	    log.info("\nУ Вас $" + credit + ", ставка - $" + bet);
+	    log.info("Крутим барабаны!Розыгрыш принёс следующие результаты:");
     }
 
     private static void printDrumsResult(final int firstValue, final int secondValue, final int thirdValue) {
-        System.out.println("первый барабан - " + firstValue + ", второй - " + secondValue + ", третий - " + thirdValue);
+	    log.info("первый барабан - " + firstValue + ", второй - " + secondValue + ", третий - " + thirdValue);
     }
 
     private static void printWin(final int prize, final int credit) {
-        System.out.println("\n!!!!!!!!!!!!!!!!*************************!!!!!!!!!!!!!!!!");
-        System.out.println("Вы ВЫИГРАЛИ $" + prize + "!!! Ваш капитал теперь составляет: $" + credit);
-        System.out.println("!!!!!!!!!!!!!!!!*************************!!!!!!!!!!!!!!!!");
+	    log.info("\n!!!!!!!!!!!!!!!!*************************!!!!!!!!!!!!!!!!");
+	    log.info("Вы ВЫИГРАЛИ $" + prize + "!!! Ваш капитал теперь составляет: $" + credit);
+	    log.info("!!!!!!!!!!!!!!!!*************************!!!!!!!!!!!!!!!!");
     }
 
     private static void printLose(final int bet, final int credit) {
-        System.out.println("Проигрыш $" + bet + ", ваш капитал теперь составляет: $" + credit);
+	    log.info("Проигрыш $" + bet + ", ваш капитал теперь составляет: $" + credit);
     }
 
     public static void main() {
